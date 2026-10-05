@@ -1,5 +1,6 @@
 using System.Text.Json;
 using ChessAnalytics.Models;
+using ChessAnalytics.Services;
 using Microsoft.AspNetCore.Mvc;
 namespace ChessAnalytics.Controllers;
 
@@ -53,6 +54,20 @@ public class ChessGameController: ControllerBase
         }
  
         return Ok(chessGames.Value);
+    }
+
+    [HttpGet("alt", Name = "GetChessGameAlt")]
+    public ActionResult<ChessGameResponse> GetChessGameAlt()
+    {
+        ChessGameService gameService = new ChessGameService();
+
+        var chessGames = gameService.GetRecentGames("Nexin5", "2026", "10");
+    
+        if(chessGames.Result is not null) return chessGames.Result;
+        else
+        {
+            return BadRequest("No chess games found.");
+        }
     }
     
     

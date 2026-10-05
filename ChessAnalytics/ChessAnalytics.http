@@ -12,3 +12,7 @@ Accept: application/json
 GET {{ChessAnalytics_HostAddress}}/ChessGame/
 Accept: application/json
 ###
+
+GET {{ChessAnalytics_HostAddress}}/ChessGame/alt/
+Accept: application/json
+###
